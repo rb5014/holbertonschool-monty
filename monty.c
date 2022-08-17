@@ -1,52 +1,51 @@
 #include "monty.h"
-
 /**
  * main - entry point
  * @argc: nb of arguments
  * @argv: array of strings
  * Return: 0 if success, EXIT_FAILURE if fail
  */
-int p = 0;
 int main(int argc, char **argv)
 {
 	FILE  *file;
-	int linenum = 0, i;
+	int linenum, i;
 	size_t len = 0;
-	char *line = NULL, *delim = " \n", *token;
+	char *line = NULL, *delim = " \n", *token, *token2;
 	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {NULL, NULL}};
 	stack_t *s = NULL;
 
 
 	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
+		print_error(NULL, NULL, 1, 0);
 	file = fopen(argv[1], "r");
 	if (file  == NULL)
+		print_error(NULL, argv[1], 2, 0);
+	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	while (getline(&line, &len, file) != EOF)
-	{
-		linenum++;
 		token = strtok(line, delim);
+		if (!(token))
+			continue;
 		for (i = 0; k[i].opcode != NULL; i++)
 		{
+			if (strcmp(token, "push") == 0)
+			{
+				token2 = strtok(NULL, delim);
+				if (token2 != NULL && is_number(token2))
+					p = atoi(token2);
+				else
+					print_error(NULL, NULL, 5, linenum);
+			}
 			if (strcmp(token, k[i].opcode) == 0)
 			{
-				token = strtok(NULL, delim);
-				if (token != NULL)
-					p = atoi(token);
 				k[i].f(&s, linenum);
 				break;
 			}
 			if (k[i + 1].opcode == NULL)
-				fprintf(stderr, "L%d: unknown instruction %s\n", linenum, token);
+				print_error(token, NULL, 3, linenum);
 		}
 	}
 	free(line);
+	free_listint(s);
 	fclose(file);
 	return (0);
 }
