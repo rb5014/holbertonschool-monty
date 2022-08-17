@@ -1,19 +1,6 @@
 #include "monty.h"
 
 /**
- * newnode - function to create newnode
- * @num: numero
- *
- * return: pointer sur newnode
- *
-
-stack_t newnode()
-{
-
-}
-*/
-
-/**
  * fpush - function to push new node
  * @s: stack to modify
  * @linenum: line number of the instruction
@@ -22,16 +9,19 @@ stack_t newnode()
 
 void fpush(stack_t **s, unsigned int linenum)
 {
-    stack_t *node;
+	stack_t *node;
 
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-		return (NULL);
+	{
+		fprintf(stderr, "L%d: Couldn't allocate memory for new node\n", linenum);
+		exit(EXIT_FAILURE);
+	}
 	node->n = p;
 	node->prev = NULL;
 	node->next = *s;
 
-	if((*s) != NULL)
+	if ((*s) != NULL)
 		(*s)->prev = node;
 
 	*s = node;
@@ -48,6 +38,7 @@ void fpall(stack_t **s, unsigned int linenum)
 {
 	int i;
 
+	printf("Line: %d\n", linenum);
 	for (i = 0; *s != NULL; i++)
 	{
 		printf("%d\n", (*s)->n);
