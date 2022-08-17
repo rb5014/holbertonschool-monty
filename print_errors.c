@@ -21,7 +21,15 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		exit(EXIT_FAILURE);
 		break;
 	case 3:
-		fprintf(stderr, "L%d: unknown instruction %s\n", linenum, tok);
+		fprintf(stderr, "L%u: unknown instruction %s\n", linenum, tok);
+		exit(EXIT_FAILURE);
+		break;
+	case 4:
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+		break;
+	case 5:
+		fprintf(stderr, "L%u: usage: push integer\n", linenum);
 		exit(EXIT_FAILURE);
 		break;
 	}
