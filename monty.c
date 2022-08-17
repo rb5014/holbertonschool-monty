@@ -20,7 +20,7 @@ int main(int argc, char **argv)
 	file = fopen(argv[1], "r");
 	if (file  == NULL)
 		print_error(NULL, argv[1], 2, 0);
-	for (linenum = 0; getline(&line, &len, file) != EOF; linenum++)
+	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)
 	{
 		token = strtok(line, delim);
 		if (!(token))
