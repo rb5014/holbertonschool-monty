@@ -20,6 +20,13 @@ int is_number(char *s)
 
 }
 
+/**
+ * free_listint - free memory of list
+ * @head: pointer to head of the list
+ *
+ * Return: nothing
+ */
+
 void free_listint(stack_t *head)
 {
 	if (head == NULL)

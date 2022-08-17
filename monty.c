@@ -14,7 +14,6 @@ int main(int argc, char **argv)
 	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {NULL, NULL}};
 	stack_t *s = NULL;
 
-
 	if (argc != 2)
 		print_error(NULL, NULL, 1, 0);
 	file = fopen(argv[1], "r");
