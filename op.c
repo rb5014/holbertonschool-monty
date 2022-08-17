@@ -38,11 +38,13 @@ void fpush(stack_t **s, unsigned int linenum)
 void fpall(stack_t **s, unsigned int linenum)
 {
 	int i;
-	(void)linenum;
+	stack_t *tmp;
 
-	for (i = 0; *s != NULL; i++)
+	(void)linenum;
+	tmp = *s;
+	for (i = 0; tmp != NULL; i++)
 	{
-		printf("%d\n", (*s)->n);
-		*s = (*s)->next;
+		printf("%d\n", (tmp)->n);
+		tmp = (tmp)->next;
 	}
 }

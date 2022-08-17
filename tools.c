@@ -13,7 +13,7 @@ int is_number(char *s)
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (isdigit(s[i]) == 0)
+		if (isdigit(s[i]) == 0 && s[i] != '-')
 			return (0);
 	}
 	return (1);
