@@ -40,7 +40,7 @@ void fpall(stack_t **s, unsigned int linenum)
 
 	if (s == NULL)
 	{
-		fprintf(stderr, "L%d: Couldn't allocate memory for new node\n", linenum);
+		fprintf(stderr, "L%d: Stack doesn't exist\n", linenum);
 		exit(EXIT_FAILURE);
 	}
 	for (i = 0; *s != NULL; i++)
