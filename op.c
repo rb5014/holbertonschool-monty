@@ -38,7 +38,11 @@ void fpall(stack_t **s, unsigned int linenum)
 {
 	int i;
 
-	printf("Line: %d\n", linenum);
+	if (s == NULL)
+	{
+		fprintf(stderr, "L%d: Couldn't allocate memory for new node\n", linenum);
+		exit(EXIT_FAILURE);
+	}
 	for (i = 0; *s != NULL; i++)
 	{
 		printf("%d\n", (*s)->n);
