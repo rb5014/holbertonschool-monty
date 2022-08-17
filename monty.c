@@ -6,7 +6,6 @@
  * @argv: array of strings
  * Return: 0 if success, EXIT_FAILURE if fail
  */
-int p = 0;
 int main(int argc, char **argv)
 {
 	FILE  *file;
@@ -19,14 +18,12 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
+		print_error(NULL, NULL, 1, linenum);
 	}
 	file = fopen(argv[1], "r");
 	if (file  == NULL)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
+		print_error(NULL, argv[1], 2, linenum);
 	}
 	while (getline(&line, &len, file) != EOF)
 	{
@@ -43,7 +40,7 @@ int main(int argc, char **argv)
 				break;
 			}
 			if (k[i + 1].opcode == NULL)
-				fprintf(stderr, "L%d: unknown instruction %s\n", linenum, token);
+				print_error(token, NULL, 3, linenum);
 		}
 	}
 	free(line);

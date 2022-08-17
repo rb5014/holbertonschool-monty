@@ -1,5 +1,5 @@
 #include "monty.h"
-
+int p;
 /**
  * fpush - function to push new node
  * @s: stack to modify
