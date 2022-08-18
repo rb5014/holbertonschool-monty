@@ -39,6 +39,9 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
 		exit(EXIT_FAILURE);
 		break;
-
+	case 8:
+		fprintf(stderr, "L%u: can't swap, stack too short\n", linenum);
+		exit(EXIT_FAILURE);
+		break;
 	}
 }
