@@ -31,5 +31,10 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "L%u: usage: push integer\n", linenum);
 		exit(EXIT_FAILURE);
 		break;
+	case 6:
+		fprintf(stderr, "L%u: can't pint, stack empty", linenum);
+		exit(EXIT_FAILURE);
+		break;
+
 	}
 }
