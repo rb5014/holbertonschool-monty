@@ -11,7 +11,8 @@ int main(int argc, char **argv)
 	int linenum, i;
 	size_t len = 0;
 	char *line = NULL, *delim = " \n", *token, *token2;
-	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {NULL, NULL}};
+	instruction_t k[] = {{"push", fpush}, {"pall", fpall},
+			     {NULL, NULL}};
 	stack_t *s = NULL;
 
 	if (argc != 2)
@@ -26,16 +27,13 @@ int main(int argc, char **argv)
 			continue;
 		for (i = 0; k[i].opcode != NULL; i++)
 		{
-			if (strcmp(token, "push") == 0)
-			{
-				token2 = strtok(NULL, delim);
-				if (token2 != NULL && is_number(token2))
-					p = atoi(token2);
-				else
-					print_error(NULL, NULL, 5, linenum);
-			}
 			if (strcmp(token, k[i].opcode) == 0)
 			{
+				token2 = strtok(NULL, delim);
+				if (i == 0 && is_number(token2))
+					p = atoi(token2);
+				else if (i == 0 && is_number(token2) == 0)
+					print_error(NULL, NULL, 5, linenum);
 				k[i].f(&s, linenum);
 				break;
 			}
