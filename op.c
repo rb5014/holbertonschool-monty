@@ -63,3 +63,26 @@ void fpint(stack_t **s, unsigned int linenum)
 	else
 		printf("%d\n", (*s)->n);
 }
+
+
+/**
+ * fpop - function to remove element on top of the stack
+ * @s: stack to modify
+ * @linenum: line number of the instruction
+ * Return: nothing
+ */
+
+void fpop(stack_t **s, unsigned int linenum)
+{
+	stack_t *tmp;
+
+	(void)linenum;
+	if (s == NULL || *s == NULL)
+		print_error(NULL, NULL, 6, linenum);
+	else
+	{
+		tmp = *s;
+		*s = (*s)->next;
+		free(tmp);
+	}
+}
