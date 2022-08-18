@@ -49,7 +49,7 @@ void fpall(stack_t **s, unsigned int linenum)
 }
 
 /**
- * fpall - function to print all elements of the stack
+ * fpint - function to print all elements of the stack
  * @s: stack to print
  * @linenum: line number of the instruction
  * Return: nothing
