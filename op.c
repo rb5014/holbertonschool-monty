@@ -78,7 +78,7 @@ void fpop(stack_t **s, unsigned int linenum)
 
 	(void)linenum;
 	if (s == NULL || *s == NULL)
-		print_error(NULL, NULL, 6, linenum);
+		print_error(NULL, NULL, 7, linenum);
 	else
 	{
 		tmp = *s;
