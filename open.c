@@ -27,7 +27,9 @@ void _read(FILE *file)
 	int linenum, i;
 	size_t len = 0;
 	char *line = NULL, *delim = " \n", *token, *token2;
-	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint}, {"pop", fpop}, {"swap", fswap}, {NULL, NULL}};
+	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint},
+			     {"pop", fpop}, {"add", fadd}, {"nop", fnop},
+			     {"swap", fswap}, {NULL, NULL}};
 	stack_t *s = NULL;
 
 	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)

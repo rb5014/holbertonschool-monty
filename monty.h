@@ -43,6 +43,8 @@ void fpall(stack_t **s, unsigned int linenum);
 void fpint(stack_t **s, unsigned int linenum);
 void fpop(stack_t **s, unsigned int linenum);
 void fswap(stack_t **s, unsigned int linenum);
+void fadd(stack_t **s, unsigned int linenum);
+void fnop(stack_t **s, unsigned int linenum);
 void print_error(char *tok, char *arg, int errornum, unsigned int linenum);
 void free_all(stack_t *head, char *line, FILE *file);
 #endif
