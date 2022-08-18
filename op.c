@@ -58,7 +58,7 @@ void fpall(stack_t **s, unsigned int linenum)
 void fpint(stack_t **s, unsigned int linenum)
 {
 	(void)linenum;
-	if (s == NULL)
+	if (s == NULL || *s == NULL)
 		print_error(NULL, NULL, 6, linenum);
 	else
 		printf("%d\n", (*s)->n);

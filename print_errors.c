@@ -32,7 +32,7 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		exit(EXIT_FAILURE);
 		break;
 	case 6:
-		fprintf(stderr, "L%u: can't pint, stack empty", linenum);
+		fprintf(stderr, "L%u: can't pint, stack empty\n", linenum);
 		exit(EXIT_FAILURE);
 		break;
 
