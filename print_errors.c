@@ -39,6 +39,10 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
 		exit(EXIT_FAILURE);
 		break;
+	case 9:
+		fprintf(stderr, "L%u: can't add, stack too short\n", linenum);
+		exit(EXIT_FAILURE);
+		break;
 
 	}
 }

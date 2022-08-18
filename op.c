@@ -57,11 +57,9 @@ void fpall(stack_t **s, unsigned int linenum)
 
 void fpint(stack_t **s, unsigned int linenum)
 {
-	(void)linenum;
 	if (s == NULL || *s == NULL)
 		print_error(NULL, NULL, 6, linenum);
-	else
-		printf("%d\n", (*s)->n);
+	printf("%d\n", (*s)->n);
 }
 
 
@@ -69,20 +67,27 @@ void fpint(stack_t **s, unsigned int linenum)
  * fpop - function to remove element on top of the stack
  * @s: stack to modify
  * @linenum: line number of the instruction
- * Return: nothing
  */
-
 void fpop(stack_t **s, unsigned int linenum)
 {
 	stack_t *tmp;
 
-	(void)linenum;
 	if (s == NULL || *s == NULL)
 		print_error(NULL, NULL, 7, linenum);
-	else
-	{
-		tmp = *s;
-		*s = (*s)->next;
-		free(tmp);
-	}
+	tmp = *s;
+	*s = (*s)->next;
+	free(tmp);
+
+}
+/**
+ * fadd - function to add the two elements on top of the stack
+ * @s: stack to modify
+ * @linenum: line number of the instruction
+ */
+void fadd(stack_t **s, unsigned int linenum)
+{
+	if (s == NULL || *s == NULL || (*s)->next == NULL)
+		print_error(NULL, NULL, 9, linenum);
+	(*s)->next->n += (*s)->n;
+	fpop(s, linenum);
 }
