@@ -53,8 +53,9 @@ void _read(FILE *file)
 			}
 			if (k[i + 1].opcode == NULL)
 			{
-				free_all(s, line, file);
 				print_error(token, NULL, 3, linenum);
+				free_all(s, line, file);
+				exit(EXIT_FAILURE);
 			}
 		}
 	}

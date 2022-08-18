@@ -22,7 +22,6 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		break;
 	case 3:
 		fprintf(stderr, "L%u: unknown instruction %s\n", linenum, tok);
-		exit(EXIT_FAILURE);
 		break;
 	case 4:
 		fprintf(stderr, "Error: malloc failed\n");
