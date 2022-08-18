@@ -35,9 +35,11 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+FILE *_fopen(char *filename);
+void _read(FILE *file);
 int is_number(char *s);
 void fpush(stack_t **s, unsigned int linenum);
 void fpall(stack_t **s, unsigned int linenum);
 void print_error(char *tok, char *arg, int errornum, unsigned int linenum);
-void free_listint(stack_t *head);
+void free_all(stack_t *head, char *line, FILE *file);
 #endif
