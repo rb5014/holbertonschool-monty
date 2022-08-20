@@ -1,5 +1,4 @@
 #include "monty.h"
-int p;
 /**
  * fpush - function to push new node
  * @s: stack to modify
@@ -17,8 +16,7 @@ void fpush(stack_t **s, unsigned int linenum)
 		print_error(NULL, NULL, 4, linenum);
 		exit(EXIT_FAILURE);
 	}
-
-	node->n = p;
+	node->n = atoi(token);
 	node->prev = NULL;
 	node->next = *s;
 

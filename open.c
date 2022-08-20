@@ -1,5 +1,5 @@
 #include "monty.h"
-
+char *token;
 /**
  * _fopen - fopen a file stream
  * @filename: name of the file to open
@@ -26,7 +26,7 @@ void _read(FILE *file)
 {
 	int linenum, i;
 	size_t len = 0;
-	char *line = NULL, *delim = " \n", *token, *token2;
+	char *line = NULL, *delim = " \n";
 	instruction_t k[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint},
 			     {"pop", fpop}, {"add", fadd}, {"nop", fnop},
 			     {"swap", fswap}, {NULL, NULL}};
@@ -41,23 +41,23 @@ void _read(FILE *file)
 		{
 			if (strcmp(token, k[i].opcode) == 0)
 			{
-				token2 = strtok(NULL, delim);
-				if (i == 0 && is_number(token2))
-					p = atoi(token2);
-				else if (i == 0 && is_number(token2) == 0)
+				if (i == 0)
 				{
-					free_all(s, line, file);
-					print_error(NULL, NULL, 5, linenum);
+					token = strtok(NULL, delim);
+					if (is_number(token) == 0)
+					{
+						free_all(s, line, file);
+						print_error(NULL, NULL, 5, linenum);
+					}
 				}
 				k[i].f(&s, linenum);
 				break;
 			}
-			if (k[i + 1].opcode == NULL)
-			{
-				print_error(token, NULL, 3, linenum);
-				free_all(s, line, file);
-				exit(EXIT_FAILURE);
-			}
+		}
+		if (k[i].opcode == NULL)
+		{
+			print_error(token, NULL, 3, linenum);
+			free_all(s, line, file);
 		}
 	}
 	free_all(s, line, file);

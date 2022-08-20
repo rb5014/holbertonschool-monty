@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-extern int p;
+extern char *token;
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -47,4 +47,5 @@ void fadd(stack_t **s, unsigned int linenum);
 void fnop(stack_t **s, unsigned int linenum);
 void print_error(char *tok, char *arg, int errornum, unsigned int linenum);
 void free_all(stack_t *head, char *line, FILE *file);
+void free_listint(stack_t *head);
 #endif

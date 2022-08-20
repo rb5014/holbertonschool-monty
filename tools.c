@@ -42,7 +42,10 @@ void free_listint(stack_t *head)
  */
 void free_all(stack_t *head, char *line, FILE *file)
 {
-	free_listint(head);
-	free(line);
-	fclose(file);
+	if (head)
+		free_listint(head);
+	if (line)
+		free(line);
+	if (file)
+		fclose(file);
 }
