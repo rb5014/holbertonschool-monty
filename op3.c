@@ -1,12 +1,12 @@
 #include "monty.h"
 
 /**
- * fmod - divides the second top element of the stack
+ * _fmod - divides the second top element of the stack
  * by the top element of the stack
  * @s: stack to modify
  * @linenum: line number of the instruction
  */
-void fmod(stack_t **s, unsigned int linenum)
+void _fmod(stack_t **s, unsigned int linenum)
 {
 	if (s == NULL || *s == NULL || (*s)->next == NULL)
 	{
