@@ -3,13 +3,12 @@
  * print_error - print error with line number
  * @errornum: error identifier
  * @linenum: line number where error was found
- * @tok: token that isn't an instruction
  * @arg: arg that isn't a file
  */
 
-void print_error(char *arg, int errnum, unsigned int linenum)
+void print_error(char *arg, int errornum, unsigned int linenum)
 {
-	switch (errnum)
+	switch (errornum)
 	{
 	case 1:
 		fprintf(stderr, "USAGE: monty file\n");
@@ -33,9 +32,11 @@ void print_error(char *arg, int errnum, unsigned int linenum)
 		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
 		break;
 	case 8:
-	case 9:
-	case 10:
 		fprintf(stderr, "L%u: can't %s, stack too short\n", linenum, token);
 		break;
+	case 9:
+		fprintf(stderr, "L%u: division by zero\n", linenum);
+		break;
 	}
+	token = "error";
 }

@@ -14,7 +14,7 @@ void fpush(stack_t **s, unsigned int linenum)
 	if (node == NULL)
 	{
 		print_error(NULL, 4, linenum);
-		exit(EXIT_FAILURE);
+		return;
 	}
 	node->n = atoi(token);
 	node->prev = NULL;
@@ -56,7 +56,10 @@ void fpall(stack_t **s, unsigned int linenum)
 void fpint(stack_t **s, unsigned int linenum)
 {
 	if (s == NULL || *s == NULL)
+	{
 		print_error(NULL, 6, linenum);
+		return;
+	}
 	printf("%d\n", (*s)->n);
 }
 
@@ -71,11 +74,14 @@ void fpop(stack_t **s, unsigned int linenum)
 	stack_t *tmp;
 
 	if (s == NULL || *s == NULL)
+	{
 		print_error(NULL, 7, linenum);
+		return;
+	}
 	tmp = *s;
 	*s = (*s)->next;
 	free(tmp);
-
+	tmp = NULL;
 }
 /**
  * fadd - function to add the two elements on top of the stack
@@ -85,7 +91,10 @@ void fpop(stack_t **s, unsigned int linenum)
 void fadd(stack_t **s, unsigned int linenum)
 {
 	if (s == NULL || *s == NULL || (*s)->next == NULL)
-		print_error(NULL, 9, linenum);
+	{
+		print_error(NULL, 8, linenum);
+		return;
+	}
 	(*s)->next->n += (*s)->n;
 	fpop(s, linenum);
 }

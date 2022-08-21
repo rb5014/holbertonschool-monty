@@ -26,30 +26,33 @@ FILE *_fopen(char *filename)
  * Return: Errstatus, 0 if success, -1 otherwise
  */
 
- int _read(FILE *file)
+int _read(FILE *file)
 {
 	int linenum, errstatus;
 	size_t len = 0;
 	char *line = NULL;
 	stack_t *s = NULL;
 	instruction_t list[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint},
-			     {"pop", fpop}, {"add", fadd}, {"nop", fnop},
-			     {"swap", fswap}, {NULL, NULL}}; 
+	{"pop", fpop}, {"add", fadd}, {"nop", fnop}, {"sub", fsub}, {"div", fdiv},
+	{"mul", fadd}, {"swap", fswap}, {"nop", fnop}, {NULL, NULL}};
 
 	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)
 	{
 		errstatus = _find_f(&s, list, &line, linenum);
-		if (errstatus == 0)
-			continue;
+		if (errstatus != 0)
+			break;
 	}
 	free_all(s, line, file);
 	return (errstatus);
 }
 /**
- * _find_function - define the array of structures with the names of the functions 
+ * _find_f - find the function in the line
+ * @s: stack to modify
+ * @list: array of structures containing pointer to the fonctions
+ * @line: line to strtok to get the opcode
+ * @linenum: line number of the opcode in the file
  * Return: 0 if success, -1 otherwise
  */
-
 int _find_f(stack_t **s, instruction_t list[], char **line, int linenum)
 {
 	int i;
@@ -72,13 +75,15 @@ int _find_f(stack_t **s, instruction_t list[], char **line, int linenum)
 				}
 			}
 			list[i].f(s, linenum);
-			return(0);
+			if (strcmp(token, "error") == 0)
+				return (-1);
+			break;
 		}
 	}
 	if (list[i].opcode == NULL)
 	{
 		print_error(token, 3, linenum);
-		return (-1);	
+		return (-1);
 	}
 	return (0);
 }
