@@ -34,7 +34,7 @@ int _read(FILE *file)
 	stack_t *s = NULL;
 	instruction_t list[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint},
 	{"pop", fpop}, {"add", fadd}, {"nop", fnop}, {"sub", fsub}, {"div", fdiv},
-	{"mul", fmul}, {"mod", _fmod}, {"swap", fswap}, {"nop", fnop}, {"#", fnop},
+	{"mul", fmul}, {"mod", _fmod}, {"swap", fswap}, {"nop", fnop},
 	{NULL, NULL}};
 
 	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)
@@ -62,6 +62,8 @@ int _find_f(stack_t **s, instruction_t list[], char **line, int linenum)
 	token = strtok(*line, delim);
 	if (!(token))
 		return (0);
+	if (token[0] == '#')
+		return(0);
 	for (i = 0; list[i].opcode != NULL; i++)
 	{
 		if (strcmp(token, list[i].opcode) == 0)
