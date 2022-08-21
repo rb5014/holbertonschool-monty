@@ -48,6 +48,7 @@ void fadd(stack_t **s, unsigned int linenum);
 void fsub(stack_t **s, unsigned int linenum);
 void fdiv(stack_t **s, unsigned int linenum);
 void fmul(stack_t **s, unsigned int linenum);
+void fmod(stack_t **s, unsigned int linenum);
 void fnop(stack_t **s, unsigned int linenum);
 void print_error(char *arg, int errornum, unsigned int linenum);
 void free_all(stack_t *head, char *line, FILE *file);

@@ -34,7 +34,8 @@ int _read(FILE *file)
 	stack_t *s = NULL;
 	instruction_t list[] = {{"push", fpush}, {"pall", fpall}, {"pint", fpint},
 	{"pop", fpop}, {"add", fadd}, {"nop", fnop}, {"sub", fsub}, {"div", fdiv},
-	{"mul", fmul}, {"swap", fswap}, {"nop", fnop}, {NULL, NULL}};
+	{"mul", fmul}, {"mod", fmod}, {"swap", fswap}, {"nop", fnop}, {"#", fnop},
+	{NULL, NULL}};
 
 	for (linenum = 1; getline(&line, &len, file) != EOF; linenum++)
 	{
