@@ -10,7 +10,10 @@ int main(int argc, char **argv)
 	FILE *file;
 
 	if (argc != 2)
+	{
 		print_error(NULL, 1, 0);
+		exit(EXIT_FAILURE);
+	}
 	file = _fopen(argv[1]);
 	if (file == NULL)
 		exit(EXIT_FAILURE);
