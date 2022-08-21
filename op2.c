@@ -13,7 +13,7 @@ void fswap(stack_t **s, unsigned int linenum)
 
 	(void)linenum;
 	if (s == NULL || *s == NULL || (*s)->next == NULL)
-		print_error(NULL, NULL, 8, linenum);
+		print_error(NULL, 8, linenum);
 	else
 	{
 		tmp = *s;

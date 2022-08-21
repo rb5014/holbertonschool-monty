@@ -13,7 +13,7 @@ void fpush(stack_t **s, unsigned int linenum)
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
 	{
-		print_error(NULL, NULL, 4, linenum);
+		print_error(NULL, 4, linenum);
 		exit(EXIT_FAILURE);
 	}
 	node->n = atoi(token);
@@ -56,7 +56,7 @@ void fpall(stack_t **s, unsigned int linenum)
 void fpint(stack_t **s, unsigned int linenum)
 {
 	if (s == NULL || *s == NULL)
-		print_error(NULL, NULL, 6, linenum);
+		print_error(NULL, 6, linenum);
 	printf("%d\n", (*s)->n);
 }
 
@@ -71,7 +71,7 @@ void fpop(stack_t **s, unsigned int linenum)
 	stack_t *tmp;
 
 	if (s == NULL || *s == NULL)
-		print_error(NULL, NULL, 7, linenum);
+		print_error(NULL, 7, linenum);
 	tmp = *s;
 	*s = (*s)->next;
 	free(tmp);
@@ -85,7 +85,7 @@ void fpop(stack_t **s, unsigned int linenum)
 void fadd(stack_t **s, unsigned int linenum)
 {
 	if (s == NULL || *s == NULL || (*s)->next == NULL)
-		print_error(NULL, NULL, 9, linenum);
+		print_error(NULL, 9, linenum);
 	(*s)->next->n += (*s)->n;
 	fpop(s, linenum);
 }

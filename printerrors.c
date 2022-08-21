@@ -1,5 +1,4 @@
 #include "monty.h"
-
 /**
  * print_error - print error with line number
  * @errornum: error identifier
@@ -8,9 +7,9 @@
  * @arg: arg that isn't a file
  */
 
-void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
+void print_error(char *arg, int errnum, unsigned int linenum)
 {
-	switch (errornum)
+	switch (errnum)
 	{
 	case 1:
 		fprintf(stderr, "USAGE: monty file\n");
@@ -19,7 +18,7 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "Error: Can't open file %s\n", arg);
 		break;
 	case 3:
-		fprintf(stderr, "L%u: unknown instruction %s\n", linenum, tok);
+		fprintf(stderr, "L%u: unknown instruction %s\n", linenum, arg);
 		break;
 	case 4:
 		fprintf(stderr, "Error: malloc failed\n");
@@ -39,6 +38,4 @@ void print_error(char *tok, char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "L%u: can't %s, stack too short\n", linenum, token);
 		break;
 	}
-	if (errornum != 3)
-		exit(EXIT_FAILURE);
 }

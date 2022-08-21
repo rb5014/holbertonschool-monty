@@ -10,8 +10,11 @@ int main(int argc, char **argv)
 	FILE *file;
 
 	if (argc != 2)
-		print_error(NULL, NULL, 1, 0);
+		print_error(NULL, 1, 0);
 	file = _fopen(argv[1]);
-	_read(file);
+	if (file == NULL)
+		exit(EXIT_FAILURE); 
+	if (_read(file) == -1)
+		exit(EXIT_FAILURE);
 	return (0);
 }
