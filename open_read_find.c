@@ -63,7 +63,7 @@ int _find_f(stack_t **s, instruction_t list[], char **line, int linenum)
 	if (!(token))
 		return (0);
 	if (token[0] == '#')
-		return(0);
+		return (0);
 	for (i = 0; list[i].opcode != NULL; i++)
 	{
 		if (strcmp(token, list[i].opcode) == 0)
