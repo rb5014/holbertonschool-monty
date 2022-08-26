@@ -26,16 +26,19 @@ void print_error(char *arg, int errornum, unsigned int linenum)
 		fprintf(stderr, "L%u: usage: push integer\n", linenum);
 		break;
 	case 6:
-		fprintf(stderr, "L%u: can't pint, stack empty\n", linenum);
+		fprintf(stderr, "L%u: can't %s, stack empty\n", linenum, token);
 		break;
 	case 7:
-		fprintf(stderr, "L%u: can't pop an empty stack\n", linenum);
+		fprintf(stderr, "L%u: can't %s an empty stack\n", linenum, token);
 		break;
 	case 8:
 		fprintf(stderr, "L%u: can't %s, stack too short\n", linenum, token);
 		break;
 	case 9:
 		fprintf(stderr, "L%u: division by zero\n", linenum);
+		break;
+	case 10:
+		fprintf(stderr, "L%u: can't %s, value out of range\n", linenum, token);
 		break;
 	}
 	token = "error";

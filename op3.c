@@ -21,3 +21,23 @@ void _fmod(stack_t **s, unsigned int linenum)
 	(*s)->next->n %= (*s)->n;
 	fpop(s, linenum);
 }
+
+/**
+ * fpchar - prints the char at the top of the stack, followed by a new line
+ * @pchar: stack to modify
+ * @linenum: line number of the instruction
+ */
+void _fpchar(stack_t **s, unsigned int linenum)
+{
+	if (s == NULL || *s == NULL)
+	{
+		print_error(NULL, 6, linenum);
+		return;
+	}
+	if ((*s)->n < 0 || (*s)->n > 127)
+	{
+		print_error(NULL, 10, linenum);
+		return;
+	}
+	printf("%c\n");	
+}
