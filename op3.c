@@ -39,5 +39,5 @@ void fpchar(stack_t **s, unsigned int linenum)
 		print_error(NULL, 10, linenum);
 		return;
 	}
-	printf("%c\n");
+	printf("%c\n", (*s)->n);
 }
